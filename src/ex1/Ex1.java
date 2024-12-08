@@ -55,33 +55,41 @@ public class Ex1 {
     public static boolean isNumber(String a) {
 
             if (a == null || a.isEmpty())
+                return false; // Input cannot be null or empty
+
+            if (a.startsWith(" ") || a.endsWith(" "))
                 return false;
 
-            // Handle numbers without "b" as base 10
+        // Handle numbers without "b" as base 10
             if (!a.contains("b")) {
                 // Verify that all characters are digits (0-9)
                 for (char c : a.toCharArray()) {
                     if (!Character.isDigit(c))
-                        return false; // Not a valid base 10 number
+                        return false; // Invalid base 10 number
                 }
-                return true; // All characters are digits, valid base 10 number
+                return true; // Valid base 10 number
             }
 
             // Split the input into the number and base parts
             String[] parts = a.split("b");
-            if (parts.length != 2 || parts[0].isEmpty())
-                return false; // Invalid: missing number before "b"
+
+            // Validate that both parts exist and are non-empty
+            if (parts.length != 2 || parts[0].isEmpty() || parts[1].isEmpty())
+                return false; // Invalid: missing number or base
 
             String number = parts[0];
             String baseStr = parts[1];
 
-            // Validate the base
-            if (!isNumberBaseValid(baseStr))
+            if (!number.equals(number.toUpperCase()) || !baseStr.equals(baseStr.toUpperCase()))
                 return false;
+
+        // Validate the base
+            if (!isNumberBaseValid(baseStr))
+                return false; // Invalid base part
 
             int base = baseToInt(baseStr);
             if (base < 2 || base > 16)
-                return false;
+                return false; // Invalid base range
 
             // Validate the number part
             for (char c : number.toCharArray()) {
@@ -91,6 +99,7 @@ public class Ex1 {
 
             return true; // Valid number
         }
+
 
 
         /**
@@ -125,7 +134,12 @@ public class Ex1 {
      * @return true iff the two numbers have the same values.
      */
     public static boolean equals(String n1, String n2) {
-        return number2Int(n1) == number2Int(n2);
+            // Check if both numbers are valid
+            if (!isNumber(n1) || !isNumber(n2)) {
+                return false; // If either number is invalid, they are not equal
+            }
+            // Compare their integer values
+            return number2Int(n1) == number2Int(n2);
 
     }
 
@@ -147,9 +161,10 @@ public class Ex1 {
             }
         }
         return maxIndex;
+
     }
 
-    private static boolean isNumberBaseValid(String baseStr) {
+    public static boolean isNumberBaseValid(String baseStr) {
             if (baseStr.length() == 1) {
                 char c = baseStr.charAt(0);
                 return Character.isDigit(c) || (c >= 'A' && c <= 'G');
@@ -158,7 +173,7 @@ public class Ex1 {
         }
 
 
-        private static int baseToInt(String baseStr) {
+        public static int baseToInt(String baseStr) {
                 if (Character.isDigit(baseStr.charAt(0))) {
                     return Integer.parseInt(baseStr);
                 } else {
@@ -166,7 +181,7 @@ public class Ex1 {
                 }
             }
 
-            private static char baseToChar(int base) {
+            public static char baseToChar(int base) {
         if (base <= 9) return (char) ('0' + base);
         return (char) ('A' + (base - 10));
     }
