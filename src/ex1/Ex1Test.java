@@ -1,3 +1,5 @@
+
+// ID:213370919
 package ex1;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -43,6 +45,7 @@ public class Ex1Test {
         assertEquals("", Ex1.int2Number(123, 20));
         assertEquals("1AFbG", Ex1.int2Number(431, 16));
     }
+
     @Test
     void maxIndexTest() {
         String[] arr1 = {"1", "0","1","0"};
@@ -55,7 +58,6 @@ public class Ex1Test {
         assertEquals(3, Ex1.maxIndex(arr4));
 
     }
-
     @Test
     void equalsTest() {
         assertTrue(Ex1.equals("0b2", "0"));
@@ -69,24 +71,25 @@ public class Ex1Test {
     }
     @Test
     void isNumberBaseValidTest() {
-        assertTrue(Ex1.isNumberBaseValid("A")); // Base 10
-        assertTrue(Ex1.isNumberBaseValid("2")); // Base 2
-        assertFalse(Ex1.isNumberBaseValid("H")); // Invalid base
-        assertFalse(Ex1.isNumberBaseValid("20")); // Invalid base (length > 1)
+        assertTrue(Ex1.isNumberBaseValid("A"));
+        assertTrue(Ex1.isNumberBaseValid("3"));
+        assertTrue(Ex1.isNumberBaseValid("2"));
+        assertFalse(Ex1.isNumberBaseValid("H"));
+        assertFalse(Ex1.isNumberBaseValid("20"));
     }
 
     @Test
     void baseToIntTest() {
-        assertEquals(10, Ex1.baseToInt("A"));  // Base 10
-        assertEquals(2, Ex1.baseToInt("2"));   // Base 2
-        assertEquals(16, Ex1.baseToInt("G"));  // Base 16
+        assertEquals(10, Ex1.baseToInt("A"));
+        assertEquals(2, Ex1.baseToInt("2"));
+        assertEquals(16, Ex1.baseToInt("G"));
     }
 
     @Test
     void baseToCharTest() {
-        assertEquals('A', Ex1.baseToChar(10)); // Base 10
-        assertEquals('G', Ex1.baseToChar(16)); // Base 16
-        assertEquals('2', Ex1.baseToChar(2));  // Base 2
+        assertEquals('A', Ex1.baseToChar(10));
+        assertEquals('G', Ex1.baseToChar(16));
+        assertEquals('2', Ex1.baseToChar(2));
     }
 
 
