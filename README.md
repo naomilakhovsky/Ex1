@@ -29,14 +29,14 @@ Invalid examples:
 ## Functions
 1. **`number2Int(String num)`**:
    - Converts a base-represented number string to its decimal integer equivalent.
-   - 
+   
 2. **`isNumber(String a)`**:
    - Validates whether a string is a correctly formatted base-represented number.
    - Returns `true` if valid, `false` otherwise.
 
 3. **`int2Number(int num, int base)`**:
    - Converts a decimal integer to its string representation in a specified base.
-   - 
+     
 4. **`equals(String n1, String n2)`**:
    - Compares two base-represented numbers for equality, converting both to decimal first.
 
